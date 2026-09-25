@@ -9,15 +9,19 @@
 </head>
 <body>
     <header>
-        <div class="logo">LUMINA</div>
         <nav>
-            <a href="index.html">Hjem</a>
-            <a href="#">Produkter</a>
-            <a href="about.html">Om os</a>
+            <div class="nav-links">
+                <a href="#shop">Shop</a>
+                <a href="about.html">Om os</a>
+                <a href="#produktinfo">Produktinfo</a>
+            </div>
+            <a href="index.html" class="logo">LUMINA</a>
+            <div class="nav-links nav-links-right">
+                <a href="#kontakt">Kontakt</a>
+                <button type="button">Søg</button>
+                <button type="button">Kurv</button>
+            </div>
         </nav>
-        <div class="cart-icon">
-            <img src="images/shoppingbag.png" alt="Shopping bag">
-        </div>
     </header>
 
     <main> 
@@ -41,7 +45,7 @@
 
 
     <!-- PRODUCT CARDS SECTION -->
-    <section class="products-section">
+    <section class="products-section" id="shop">
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image-wrapper">
@@ -85,7 +89,7 @@
         </div>
 
           <!-- PRODUKTINFORMATION SEKTION -->
-    <section class="product-info-section">
+    <section class="product-info-section" id="produktinfo">
         <div class="product-info-container">
             <div class="info-image">
                 <img src="images/produktinfo.png" alt="Lumina Bloom med features">
@@ -160,7 +164,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
     </section>
    
 
-    <footer>
+    <footer id="kontakt">
         <div class="footer-content">
             <div>
                 <h3>Kundeservice</h3>

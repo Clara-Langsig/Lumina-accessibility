@@ -39,43 +39,64 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            padding: 30px 40px 10px;
+            /* Ligger oven på hero-billedet, starter i sidens øverste venstre hjørne */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
         }
 
         nav {
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 15px;
+            width: 100%;
         }
 
-        nav a {
-            display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 34px;
-  border-radius: 999px;
-  background-color:  #AB9A80;
-  color: var(--text-color);                  
-  font-size: 1.02rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+        .logo {
+            font-family: 'Antonio', sans-serif;
+            font-weight: 700;
+            font-size: 64px;
+            color: #FFFFFF;
+            text-decoration: none;
         }
 
-        .cart-icon img {
-            width: 24px;
-            height: auto;
+        /* Links i venstre side: X 106, Y 59, 475 x 23 px */
+        .nav-links {
+            position: absolute;
+            left: 106px;
+            top: 59px;
+            width: 475px;
+            height: 23px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        /* Højre side: spejler venstre side med samme afstand til kanten */
+        .nav-links-right {
+            left: auto;
+            right: 106px;
+            width: auto;
+            justify-content: flex-end;
+        }
+
+        .nav-links a,
+        .nav-links button {
+            background: none;
+            border: none;
+            padding: 0;
             cursor: pointer;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 23px;
+            color: #FFFFFF;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         /* --- Main Content --- */
@@ -83,9 +104,15 @@ body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            margin-top: -20px; /* Ophæver body'ens top-padding, så billedet starter helt oppe */
+            /* Billedets højde (832/1280 af bredden) minus 3 cm, som skæres af i toppen */
+            min-height: calc(100vw * 832 / 1280 - 3cm);
+            padding: 140px 20px 60px; /* Plads til naven øverst */
+            /* Billedet i fuld bredde, forankret i bunden så toppen skæres af; farven matcher billedets grå baggrund */
+            background: #939190 url('images/Hero.webp') bottom center / 100% auto no-repeat;
         }
 
         h1 {
@@ -131,7 +158,11 @@ body {
         @media (max-width: 768px) {
             h1 { font-size: 3.5rem; }
             header { flex-direction: column; gap: 20px; }
+            main { padding-top: 220px; }
             nav { flex-wrap: wrap; justify-content: center; }
+            .nav-links { position: static; width: auto; height: auto; gap: 24px; }
+            .nav-links a,
+            .nav-links button { font-size: 18px; }
         }
   
 /* --- Layout Container --- */
