@@ -1,39 +1,3 @@
-const gallery = document.querySelector('.gallery');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-if (gallery && galleryItems.length > 0) {
-
-    // Klon billederne x3 for et langt loop
-    for (let i = 0; i < 3; i++) {
-        galleryItems.forEach(item => {
-            const clone = item.cloneNode(true);
-            gallery.appendChild(clone);
-        });
-    }
-
-    let position = 0;
-    const itemWidth = galleryItems[0].offsetWidth + 20; 
-    const totalOriginalWidth = itemWidth * galleryItems.length;
-
-    const speed = 0.5; // <--- Justér smoothness (0.2 = ultra slow, 2 = hurtigere)
-
-    function animate() {
-        position -= speed;
-
-        // Flyt gallery
-        gallery.style.transform = `translateX(${position}px)`;
-
-        // Reset når første sæt er scrollet ud
-        if (Math.abs(position) >= totalOriginalWidth) {
-            position = 0;
-        }
-
-        requestAnimationFrame(animate);
-    }
-
-    // Start animation
-    requestAnimationFrame(animate);
-}
 /* Back-knap: fører tilbage til index.html */
 const backBtn = document.querySelector('.back-btn');
 if (backBtn) {
