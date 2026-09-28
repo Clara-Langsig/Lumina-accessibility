@@ -74,9 +74,15 @@
 
     <!-- PRODUKT-CARD -->
     <article class="feature-card" id="shop" aria-labelledby="feature-title">
-        <div class="feature-image">
-            <img src="images/sagegreen.webp" alt="Lumina Bloom højtaler i farven Sage Green" id="feature-img">
-        </div>
+        <!-- Billedbeskrivelsen står i figcaption (kun for skærmlæsere) i stedet for alt,
+             så farvenavnet kan markeres som engelsk og udtales rigtigt.
+             Beskrivelsen skifter med farven, se initColorSwatches i script.js -->
+        <figure class="feature-image">
+            <img src="images/sagegreen.webp" alt="" id="feature-img">
+            <figcaption class="visually-hidden">
+                Billede af Lumina Bloom højtaler i farven <span lang="en" id="feature-img-color">Sage Green</span>
+            </figcaption>
+        </figure>
 
         <div class="feature-content">
             <!-- Overskrift + undertitel hører sammen -->
@@ -101,7 +107,7 @@
             <fieldset class="color-picker">
                 <legend class="feature-color">
                     <span class="feature-color-label">Farve</span>
-                    <span class="feature-color-name" id="feature-color-name">- Sage Green</span>
+                    <span class="feature-color-name">- <span lang="en" id="feature-color-name">Sage Green</span></span>
                 </legend>
 
                 <div class="color-swatches">

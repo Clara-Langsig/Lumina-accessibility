@@ -3,7 +3,16 @@
 // når teksten skiftes. Et live-område der oprettes med teksten i, bliver ofte ikke læst op.
 let toastTimer;
 
-function showCartToast(message) {
+// Laver et <span lang="en"> til engelske farvenavne, så skærmlæsere udtaler dem på engelsk
+function englishText(text) {
+  const span = document.createElement('span');
+  span.lang = 'en';
+  span.textContent = text;
+  return span;
+}
+
+// "parts" er en liste af tekst og elementer, fx ['Lumina Bloom i ', englishText('Dusty Rose')]
+function showCartToast(parts) {
   let toast = document.querySelector('.cart-toast');
   if (!toast) {
     toast = document.createElement('div');
@@ -15,7 +24,7 @@ function showCartToast(message) {
   // Tøm først, så samme besked læses op igen ved flere klik
   toast.textContent = '';
   requestAnimationFrame(() => {
-    toast.textContent = message;
+    toast.append(...parts);
     toast.classList.add('visible');
   });
 
@@ -103,12 +112,15 @@ function renderCart() {
     name.textContent = 'Lumina Bloom';
     const meta = document.createElement('p');
     meta.className = 'cart-item-meta';
-    meta.textContent = `${item.color} · Antal: ${item.quantity}`;
+    meta.append(englishText(item.color), ` · Antal: ${item.quantity}`);
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'cart-remove';
-    remove.textContent = 'Fjern';
-    remove.setAttribute('aria-label', `Fjern Lumina Bloom i ${item.color} fra kurven`);
+    // Skjult tekst i stedet for aria-label, så farvenavnet kan markeres som engelsk
+    const removeHidden = document.createElement('span');
+    removeHidden.className = 'visually-hidden';
+    removeHidden.append(' Lumina Bloom i ', englishText(item.color), ' fra kurven');
+    remove.append('Fjern', removeHidden);
     remove.addEventListener('click', () => {
       cart.splice(index, 1);
       renderCart();
@@ -150,7 +162,7 @@ function addToCart() {
   else cart.push({ color, image: selected.dataset.image, quantity: 1 });
 
   renderCart();
-  showCartToast(`Lumina Bloom i ${color} er lagt i kurven`);
+  showCartToast(['Lumina Bloom i ', englishText(color), ' er lagt i kurven']);
 }
 
 function initCart() {
@@ -242,16 +254,18 @@ document.addEventListener('DOMContentLoaded', initSearch);
 function initColorSwatches() {
   const radios = document.querySelectorAll('.color-swatches input[name="farve"]');
   const image = document.getElementById('feature-img');
-  const colorName = document.getElementById('feature-color-name');
-  if (!radios.length || !image || !colorName) return;
+  const imageColor = document.getElementById('feature-img-color'); // i billedbeskrivelsen
+  const colorName = document.getElementById('feature-color-name'); // i "Farve - ..."
+  if (!radios.length || !image || !imageColor || !colorName) return;
 
   // "change" fyrer både ved klik og ved piletaster
   radios.forEach(radio => {
     radio.addEventListener('change', () => {
       const name = radio.value;
       image.src = radio.dataset.image;
-      image.alt = `Lumina Bloom højtaler i ${name}`;
-      colorName.textContent = `- ${name}`;
+      // Farvenavnene står i <span lang="en">, så de udtales på engelsk
+      imageColor.textContent = name;
+      colorName.textContent = name;
     });
   });
 }
