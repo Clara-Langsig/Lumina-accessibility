@@ -40,6 +40,63 @@
         <img src="images/Trustpilot.webp" alt="Trustpilot" class="hero-trustpilot">
     </main>
 
+    <!-- PRODUKT-CARD -->
+    <article class="feature-card" aria-labelledby="feature-title">
+        <div class="feature-image">
+            <img src="images/sagegreen.webp" alt="Lumina Bloom højtaler i Sage Green" id="feature-img">
+        </div>
+
+        <div class="feature-content">
+            <!-- Overskrift + undertitel hører sammen -->
+            <hgroup>
+                <h2 class="feature-title" id="feature-title">Lumina Bloom</h2>
+                <p class="feature-subtitle">Bluetooth højtaler</p>
+            </hgroup>
+
+            <p class="feature-price"><span class="visually-hidden">Pris: </span>1995 DKK</p>
+
+            <p class="feature-text">
+                Kraftfuld lyd i et blødt og minimalistisk design. Op til 18 timers spilletid, justerbart LED-lys og Social Connect. Skabt til at dele musikken, hvor du er.
+            </p>
+            <button type="button" class="feature-read-more">
+                Læs mere<span class="visually-hidden"> om Lumina Bloom</span>
+            </button>
+
+            <hr class="feature-line">
+
+            <!-- Farvevælger: radioknapper, så skærmlæsere siger fx "Dusty Rose, valgt, 2 af 4" -->
+            <fieldset class="color-picker">
+                <legend class="feature-color">
+                    <span class="feature-color-label">Farve</span>
+                    <span class="feature-color-name" id="feature-color-name">- Sage Green</span>
+                </legend>
+
+                <div class="color-swatches">
+                    <label class="swatch swatch-green">
+                        <input type="radio" name="farve" value="Sage Green" data-image="images/sagegreen.webp" checked>
+                        <span class="visually-hidden">Sage Green</span>
+                    </label>
+                    <label class="swatch swatch-rose">
+                        <input type="radio" name="farve" value="Dusty Rose" data-image="images/dustyrose.webp">
+                        <span class="visually-hidden">Dusty Rose</span>
+                    </label>
+                    <label class="swatch swatch-white">
+                        <input type="radio" name="farve" value="Moonlight White" data-image="images/moonlightwhite.webp">
+                        <span class="visually-hidden">Moonlight White</span>
+                    </label>
+                    <label class="swatch swatch-lavender">
+                        <input type="radio" name="farve" value="Lavender Mist" data-image="images/lavendermist.webp">
+                        <span class="visually-hidden">Lavender Mist</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <button type="button" class="feature-buy">
+                Køb nu<span class="visually-hidden"> – Lumina Bloom</span>
+            </button>
+        </div>
+    </article>
+
     <!-- Trustpilot reviews-->
     <div class="reviews" id="reviews-container"></div>
 

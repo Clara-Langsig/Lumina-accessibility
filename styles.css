@@ -20,6 +20,19 @@
   height: 100%;
 }
 
+/* Tekst kun for skærmlæsere: usynlig på skærmen, men bliver læst op */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Blød scroll til ankerlinks, men ikke for brugere der har slået animationer fra */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
@@ -173,7 +186,7 @@ body {
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: background-color 0.3s;
         }
 
         .cta-btn img {
@@ -191,8 +204,207 @@ body {
             height: 73px;
         }
 
+        /* Kun baggrundsfarven fader til 50 %, teksten forbliver fuldt synlig */
         .cta-btn:hover {
-            transform: scale(1.05);
+            background-color: rgba(51, 46, 41, 0.5);   /* #332E29 ved 50 % */
+        }
+
+        .feature-buy:hover {
+            background-color: rgba(61, 53, 41, 0.5);   /* #3D3529 ved 50 % */
+        }
+
+        /* --- Produkt-card under hero (1255 x 586) ---
+           Positionerne fra designet er målt fra cardets øverste venstre hjørne:
+           billede 586 px + gap 94 px = højre kolonne starter på X 680.
+           Afstandene mellem elementerne er regnet ud fra Y-værdierne. */
+        .feature-card {
+            display: grid;
+            grid-template-columns: 586px 1fr;
+            column-gap: 94px;
+            align-items: center;
+            width: 100%;
+            max-width: 1255px;
+            min-height: 586px;
+            margin: 80px auto;
+            color: #332E29;
+        }
+
+        .feature-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .feature-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 0;
+            line-height: 1.2;
+        }
+
+        /* Overskriver den generelle `* { font-family: Inter }` */
+        .feature-content,
+        .feature-content * {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* Alt i højre kolonne flugter i venstre kant (X 680) */
+        .feature-title,
+        .feature-subtitle,
+        .feature-price,
+        .feature-text,
+        .feature-read-more,
+        .feature-color {
+            color: #332E29;
+        }
+
+        .feature-title {
+            text-transform: uppercase; /* Skrevet "Lumina Bloom" i HTML, så skærmlæsere ikke staver det */
+            font-weight: 700;
+            font-size: 36px;
+        }
+
+        .feature-subtitle {
+            margin-top: 7px;
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        .feature-price {
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 32px;
+        }
+
+        .feature-text {
+            margin-top: 35px;
+            font-weight: 300;
+            font-size: 24px;
+        }
+
+        .feature-read-more {
+            margin-top: 10px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        /* Streg: X 680, 575 px lang, 0.5 px sort */
+        .feature-line {
+            width: 100%;
+            margin-top: 23px;
+            border: none;
+            border-top: 0.5px solid #000000;
+        }
+
+        .feature-color {
+            margin-top: 35px;
+            font-size: 24px;
+        }
+
+        .feature-color-label {
+            font-weight: 500;
+        }
+
+        .feature-color-name {
+            font-style: italic;
+            font-weight: 100;
+        }
+
+        /* Fire cirkler på 45 x 45 med 9 px mellemrum */
+        .color-swatches {
+            display: flex;
+            gap: 9px;
+            margin-top: 16px;
+        }
+
+        /* Fieldset uden browserens standard-ramme */
+        .color-picker {
+            border: none;
+            padding: 0;
+            margin: 0;
+            min-width: 0;
+        }
+
+        .color-picker legend {
+            padding: 0;
+        }
+
+        .swatch {
+            position: relative;
+            display: block;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid;
+            cursor: pointer;
+            box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Selve radioknappen skjules visuelt, men kan stadig bruges med tastatur og skærmlæser */
+        .swatch input {
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            margin: 0;
+        }
+
+        /* Valgt cirkel: inner shadow i stedet for drop shadow */
+        .swatch:has(input:checked) {
+            box-shadow: inset 1px 3px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Tydelig fokus-ring når man bruger tastatur */
+        .swatch:has(input:focus-visible) {
+            outline: 2px solid #332E29;
+            outline-offset: 3px;
+        }
+
+        .swatch-green    { background-color: #D6E0D0; border-color: #8CAF78; }
+        .swatch-rose     { background-color: #DFA093; border-color: #97685E; }
+        .swatch-white    { background-color: #E0CDBB; border-color: #897D71; }
+        .swatch-lavender { background-color: #D0E4EA; border-color: #528494; }
+
+        /* Køb nu: 412 x 59 */
+        .feature-buy {
+            margin-top: 40px;
+            width: 412px;
+            height: 59px;
+            padding: 15px 165px;
+            border: none;
+            border-radius: 10px;
+            background-color: #3D3529;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 24px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        @media (max-width: 1100px) {
+            .feature-card {
+                grid-template-columns: 1fr;
+                row-gap: 40px;
+                min-height: 0;
+            }
+            .feature-image img {
+                max-width: 586px;
+                margin: 0 auto;
+            }
+            .feature-buy {
+                width: 100%;
+                max-width: 412px;
+                padding: 15px;
+            }
         }
 
         /* --- Responsivitet (Mobil) --- */
@@ -307,11 +519,6 @@ body {
     margin: 0 10px;
 }
 
-body {
-    background: #d8c2a7;
-    font-family: Arial, sans-serif;
-}
-
 .reviews {
     display: flex;
     gap: 20px;
@@ -400,7 +607,6 @@ body {
 /* --- Product Cards Section --- */
 .products-section {
     padding: 80px 20px;
-    background-color: #D0BBA6;
 }
 
 .products-grid {
@@ -503,7 +709,6 @@ body {
 /* --- Productinformation Section --- */
 .product-info-section {
     padding: 80px 20px;
-    background-color: #D0BBA6;
 }
 
 .product-info-container {
@@ -879,8 +1084,8 @@ footer .copyright {
 }
 
 body {
-    background-color: #D0BBA6;
-    color: #f4efea;
+    background-color: #E8E4E1;
+    color: #332E29;
 }
 
 .about-container {
