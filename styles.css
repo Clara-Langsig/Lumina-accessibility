@@ -1618,9 +1618,12 @@ main:focus {
 /* --- Tablet og mindre (under 1200 px) --- */
 @media (max-width: 1200px) {
   /* Naven: logoet øverst i midten, links i centrerede rækker under.
-     De faste X/Y-positioner fra designet passer ikke, når skærmen er smallere */
+     De faste X/Y-positioner fra designet passer ikke, når skærmen er smallere.
+     Et svagt mørkt lag bag naven giver den hvide tekst 5,2:1 i kontrast på hero-billedet
+     (uden laget kun 3,1:1, som ikke er nok til nav-teksten på 16-18 px) */
   header {
-    padding: 16px 16px 8px;
+    padding: 16px 16px 24px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) calc(100% - 24px), rgba(0, 0, 0, 0) 100%);
   }
 
   header nav {
