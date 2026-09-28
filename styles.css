@@ -1609,3 +1609,294 @@ main:focus {
     height: 48px;
   }
 }
+
+/* =====================================================================
+   SMALLERE SKÆRME (tablet og mobil)
+   Alt herunder gælder kun under 1200 px, så computer-visningen er uændret.
+   ===================================================================== */
+
+/* --- Tablet og mindre (under 1200 px) --- */
+@media (max-width: 1200px) {
+  /* Naven: logoet øverst i midten, links i centrerede rækker under.
+     De faste X/Y-positioner fra designet passer ikke, når skærmen er smallere */
+  header {
+    padding: 16px 16px 8px;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 28px;
+  }
+
+  .logo {
+    order: -1; /* Står først visuelt, men læses stadig i samme rækkefølge */
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 48px;
+    line-height: 1.1;
+  }
+
+  .nav-links,
+  .nav-links-right {
+    position: static;
+    width: auto;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 20px;
+  }
+
+  /* Store nok trykflader til fingre (mindst 44 px høje) */
+  .nav-links a,
+  .nav-links button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  /* Hero: tekst og knap står i almindelig rækkefølge over billedet,
+     og billedet får plads i bunden, så teksten ikke ligger hen over personen */
+  .hero {
+    min-height: 0;
+    padding: 150px 24px calc(100vw * 832 / 1280 - 3cm + 24px);
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    position: static;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .cta-btn {
+    position: static;
+  }
+
+  .hero-trustpilot {
+    right: 24px;
+    bottom: 12px;
+  }
+
+  /* Produkt-card: kolonnerne må gerne skrumpe, så teksten ikke løber ud over kanten */
+  .feature-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-content {
+    min-width: 0;
+  }
+
+  /* Social Connect: samme problem som produkt-cardet */
+  .social-connect {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .social-connect-image {
+    max-width: 562px;
+    margin: 0 auto;
+  }
+
+  /* Søgeboksen lige under det mindre logo */
+  .search-box {
+    top: 80px;
+  }
+}
+
+/* --- Mobil (under 768 px) --- */
+@media (max-width: 768px) {
+  /* Lidt mindre luft i siderne, så indholdet har plads */
+  body {
+    padding: 20px 16px 0;
+  }
+
+  .logo {
+    font-size: 40px;
+  }
+
+  header nav {
+    gap: 0 20px;
+  }
+
+  .nav-links,
+  .nav-links-right {
+    gap: 0 16px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    font-size: 16px;
+  }
+
+  .hero {
+    padding: 190px 16px calc(100vw * 832 / 1280 - 3cm + 70px); /* Naven fylder to rækker på mobil */
+  }
+
+  /* Linjeskiftene fra designet passer ikke på en smal skærm, så teksten brydes naturligt.
+     24 px er "stor tekst", så den hvide tekst på den grå baggrund klarer kontrastkravet (3:1) */
+  .description {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .description br {
+    display: none;
+  }
+
+  .cta-btn {
+    font-size: 18px;
+    padding: 14px 28px;
+  }
+
+  .hero-trustpilot {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    width: 140px;
+    margin: 0;
+  }
+
+  /* Produkt-card */
+  .feature-card {
+    margin: 48px auto;
+    row-gap: 24px;
+  }
+
+  .feature-title {
+    font-size: 30px;
+  }
+
+  .feature-subtitle {
+    font-size: 20px;
+  }
+
+  .feature-price {
+    font-size: 26px;
+  }
+
+  .feature-text,
+  .feature-read-more,
+  .feature-color {
+    font-size: 18px;
+  }
+
+  .feature-buy {
+    width: 100%;
+    max-width: none;
+    padding: 15px;
+    font-size: 20px;
+  }
+
+  /* Produktspecifikationer */
+  .specs-section {
+    padding: 32px 16px 40px;
+  }
+
+  .specs-title {
+    font-size: 32px;
+  }
+
+  .specs-list {
+    font-size: 16px;
+  }
+
+  .specs-toggle {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  /* Social Connect */
+  .social-connect {
+    margin-top: 48px;
+    padding: 0 16px;
+  }
+
+  .social-connect-title {
+    font-size: 40px;
+  }
+
+  .social-connect-text > p {
+    font-size: 18px;
+  }
+
+  /* Følg os på sociale medier */
+  .social-section {
+    margin-top: 64px;
+  }
+
+  .social-title {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .social-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 64px;
+    padding-top: 40px;
+  }
+
+  .footer-top {
+    padding: 0 16px;
+  }
+
+  .footer-newsletter {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .newsletter-title {
+    margin-top: 32px;
+  }
+
+  .footer-divider {
+    margin: 40px 16px 0;
+  }
+
+  .footer-bottom {
+    margin: 0 16px;
+  }
+
+  /* Links i footeren: større trykflader */
+  .footer-legal ul {
+    width: auto;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 20px;
+  }
+
+  .footer-legal a {
+    display: inline-block;
+    min-height: 44px;
+    line-height: 44px;
+  }
+
+  /* About-siden: tekst og billede fylder skærmbredden */
+  .back-btn {
+    left: 16px;
+  }
+
+  .about-container {
+    align-items: stretch;
+    min-height: 0; /* Ingen lodret centrering på mobil, teksten starter lige under tilbage-knappen */
+  }
+
+  .about-text {
+    flex-shrink: 1;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .about-image {
+    flex: none;
+    width: 100%;
+  }
+}
