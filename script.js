@@ -216,18 +216,24 @@ function initSearch() {
 
 // "Køb nu" lægger den valgte farve i kurven
 function initBuyButtons() {
-  const buyButtons = document.querySelectorAll('.feature-buy');
-  buyButtons.forEach(btn => {
-    // Ignorer hvis allerede bundet
-    if (btn.dataset.buyHandlerBound) return;
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      addToCart();
-    });
-    btn.dataset.buyHandlerBound = '1';
+  document.querySelectorAll('.feature-buy').forEach(btn => {
+    btn.addEventListener('click', addToCart);
   });
 }
 
+// TILBAGE TIL TOPPEN: vis knappen, når hero-sektionen er scrollet ud af skærmen
+function initBackToTop() {
+  const button = document.querySelector('.back-to-top');
+  const hero = document.getElementById('top');
+  if (!button || !hero) return;
+
+  const observer = new IntersectionObserver(([entry]) => {
+    button.classList.toggle('is-visible', !entry.isIntersecting);
+  });
+  observer.observe(hero);
+}
+
+document.addEventListener('DOMContentLoaded', initBackToTop);
 document.addEventListener('DOMContentLoaded', initCart);
 document.addEventListener('DOMContentLoaded', initSearch);
 
@@ -292,6 +298,4 @@ function initNewsletter() {
 
 document.addEventListener('DOMContentLoaded', initNewsletter);
 
-// Init ved load + re-init hvis DOM senere ændres
 document.addEventListener('DOMContentLoaded', initBuyButtons);
-// Hvis du dynamisk indsætter produkter kan du køre initBuyButtons() igen efter indsættelse
