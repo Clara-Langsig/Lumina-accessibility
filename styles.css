@@ -448,14 +448,6 @@ body {
     color: #D88373;
 }
 
-.headline-sub {
-    font-family: 'Antonio', sans-serif;
-    font-size: 2rem;;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
 .main-heading {
     font-family: 'Antonio', sans-serif;
     font-size: 5rem;
@@ -698,64 +690,97 @@ body {
     }
 }
 
-/* --- New Section - Split Layout --- */
-.split-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 1400px;
-  margin: -80px auto 80px;
-  padding: 0 60px;
+
+
+/* --- Social Connect ---
+   Tekst (540 px) + gap 76 px + billede (562 px), centreret så der er
+   lige meget luft fra teksten til venstre kant og fra billedet til højre kant. */
+.social-connect {
+    display: grid;
+    grid-template-columns: 540px 562px;
+    column-gap: 76px;
+    justify-content: center;
+    align-items: start;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 80px;
+    margin-bottom: 0; /* Afstanden til næste sektion styres af .social-section (94 px) */
+    padding: 0 71px;
+    color: #332E29;
 }
 
-.split-text {
-  flex: 1;
-  color: #3D3529;
+.social-connect-text,
+.social-connect-text * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.split-text h1 {
-  font-family: 'Antonio', sans-serif;
-  font-size: 2rem; 
-  color: #3D3529;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+/* "NYHEDER": Y 0 */
+.social-connect-label {
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #ED5DCD;
 }
 
-.split-text p {
-  font-size: 1rem;
-  line-height: 1.8; 
-  max-width: 520px;
-  opacity: 0.9;
-  margin-bottom: 34px;
+/* "SOCIAL CONNECT": Y 44 */
+.social-connect-title {
+    margin-top: 16px;
+    font-family: 'Antonio', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #332E29;
 }
 
-.split-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+/* Brødtekst: Y 150, ca. 540 px bred så linjerne brydes som i designet */
+.social-connect-text > p {
+    max-width: 540px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5; /* 150 % */
+    color: #332E29;
 }
 
-.split-image img {
-  width: 100%;
-  max-width: 820px;
-  height: auto;
-  border-radius: 20px;
+.social-connect-text hgroup + p {
+    margin-top: 29px;
 }
 
-@media (max-width: 900px) {
-  .split-section {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 20px;
-    margin: 40px auto;
-  }
-  .split-text p {
-    margin: 0 auto 24px;
-  }
+/* Tom linje mellem afsnittene (én linjehøjde: 24 px × 1.5) */
+.social-connect-text > p + p {
+    margin-top: 36px;
 }
 
+/* Billede: 175 px nede, 76 px fra teksten */
+.social-connect-image {
+    display: block;
+    width: 100%;
+    max-width: 562px;
+    height: auto;
+    margin-top: 175px;
+}
+
+@media (max-width: 1200px) {
+    .social-connect {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+        padding: 0 20px;
+    }
+    .social-connect-image {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-connect-title {
+        font-size: 44px;
+    }
+    .social-connect-text > p {
+        font-size: 18px;
+    }
+}
 
 /* --- Container for content --- */
         .content-wrapper {
@@ -784,106 +809,110 @@ body {
             }
         }
 
-       .gallery-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+/* --- Følg os på sociale medier ---
+   Sektion 1149 px bred, 94 px under Social Connect.
+   3 cards med 60 px mellemrum: (1149 - 2 × 60) / 3 = ca. 343 px pr. card,
+   hvilket passer med billederne (344 × 332). */
+.social-section {
+    width: 100%;
+    max-width: 1149px;
+    margin: 94px auto 0;
 }
 
-.gallery-section h1 {
+.social-title {
+    margin-bottom: 36px;
+    font-family: 'Antonio', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.2;
+    letter-spacing: 0.14px;
     text-align: center;
-    font-size: 48px;
-    margin-bottom: 40px;
-    color: #3D3529;; 
+    text-transform: uppercase; /* Skrevet med små bogstaver i HTML, så skærmlæsere ikke staver det */
+    color: #332E29;
 }
 
-/* Grid styling */
-.gallery-grid {
+.social-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 60px;
+    list-style: none;
+    padding: 0;
+    align-items: start;
 }
 
-/* Images */
-.gallery-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-/* Instagram box */
-.instagram-box {
-    background: #77685D;
+.social-card {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 15px 0;
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+/* Logo + navn: logo på X 26, 8 px over billedet */
+.social-card-header {
+    display: flex;
     align-items: center;
-    padding: 40px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    gap: 8px;
+    padding: 0 26px;
+    margin-bottom: 8px;
 }
 
-.instagram-box:hover {
-    background: #eda897;
+.social-card-logo {
+    width: 31px;
+    height: 32px;
 }
 
-.insta-link {
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-
-/* SUBSCRIBE SECTION */
-
-.subscribe {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.subscribe-section {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.subscribe-section h1 {
-    font-size: 70px;
+.social-card-name {
+    font-family: 'Arimo', Arial, sans-serif;
     font-weight: 700;
-    letter-spacing: 3px;
-    color: #3D3529;
-    margin-bottom: 20px;
-}
-
-.subscribe-section .subtext {
     font-size: 16px;
-    margin-bottom: 35px;
+    color: #000000;
 }
 
-.input-wrapper {
+/* Billedet i midten fylder hele cardets bredde */
+.social-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 344 / 332;
+    object-fit: cover;
+}
+
+/* Ikoner: 16 px under billedet, hjerte/chat/send til venstre og gem til højre */
+.social-card-icons {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding: 0 21px 0 26px;
 }
 
-.input-wrapper input {
-    width: 280px;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: #d9dce2;
-    font-size: 14px;
+.social-card-actions {
+    display: flex;
+    gap: 7.95px;
 }
 
-.input-wrapper button {
-    background: #f4b8ab;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-size: 15px;
-    cursor: pointer;
+.social-card-icons img {
+    display: block;
+    width: 24px;
+    height: 24px;
 }
+
+@media (max-width: 1000px) {
+    .social-cards {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+        margin: 0 auto;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-title {
+        font-size: 40px;
+    }
+}
+
 
 /* FOOTER STYLING */
 footer {
@@ -973,22 +1002,6 @@ footer .copyright {
 }
 
 
-.headline-left {
-  display: block;
-  text-align: left;     
-  margin: 0 0 20px 0;   
-  transform: none;      
-}
-
-.content-left .headline-left {
-  max-width: 100%;
-  margin-left: 0;
-}
-
-.split-text .headline-left,
-.headline-left {
-  color: rgb(250, 105, 129); 
-}
 
 * {
     margin: 0;

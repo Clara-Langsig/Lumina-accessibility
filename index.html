@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumina Bloom</title>
-    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Arimo:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -127,54 +127,82 @@
         </div>
     </section>
 
-    <section class="split-section">
-      <div class="split-text">
-        <h1 class="headline-left">Nyhed</h1>
-        <h2 class="headline-sub">SOCIAL CONNECT</h2>
-        <p>Social Connect er en smart og intuitiv funktion, der gør det let for dig og dine venner at kombinere jeres musiksmag i én fælles playliste – direkte i Lumina app’en. 
+    <!-- SOCIAL CONNECT -->
+    <section class="social-connect" aria-labelledby="social-connect-title">
+        <div class="social-connect-text">
+            <!-- "Nyheder" er en lille label over overskriften, derfor i hgroup -->
+            <hgroup>
+                <p class="social-connect-label">Nyheder</p>
+                <h2 class="social-connect-title" id="social-connect-title">Social Connect</h2>
+            </hgroup>
 
-I stedet for at én person står for musikken til en fest eller et socialt arrangement, kan alle deltagere tilføje deres yndlingssange og påvirke stemningen i rummet. </p>
+            <p>Social Connect er en smart og intuitiv funktion, der gør det let for dig og dine venner at kombinere jeres musiksmag i én fælles playliste – direkte i Lumina app’en.</p>
 
-<p> Når playlisterne “blendes”, analyserer app’en musiksmag, genrevalg, tempo og stemning, og skaber en dynamisk, balanceret playliste, der repræsenterer alles favoritter. 
+            <p>I stedet for at én person står for musikken til en fest eller et socialt arrangement, kan alle deltagere tilføje deres yndlingssange og påvirke stemningen i rummet.</p>
 
-Appen er gratis og tilgængelig i App Store og Google Play.</p>
-      </div>
-      <div class="split-image">
-        <img src="images/socialconnect2.png" alt="Lumina Bloom">
-      </div>
+            <p>Når playlisterne “blendes”, analyserer app’en musiksmag, genrevalg, tempo og stemning, og skaber en dynamisk, balanceret playliste, der repræsenterer alles favoritter. Appen er gratis og tilgængelig i App Store og Google Play.</p>
+        </div>
+
+        <img src="images/socialconnect.webp" class="social-connect-image"
+             alt="Lumina-appen med Social Connect: invitér dine venner og blend jeres playlister, samt Lumina x Spotify">
     </section>
 
-   <section class="gallery-section">
-    <h1>FOLLOW US ON SOCIAL</h1>
+    <!-- FØLG OS PÅ SOCIALE MEDIER -->
+    <section class="social-section" aria-labelledby="social-title">
+        <h2 class="social-title" id="social-title">Følg os på sociale medier</h2>
 
-    <div class="gallery-grid">
+        <ul class="social-cards">
+            <li class="social-card">
+                <div class="social-card-header">
+                    <img src="images/logo.webp" alt="" class="social-card-logo">
+                    <span class="social-card-name">Luminaaudio</span>
+                </div>
+                <img src="images/social1.webp" alt="Person sidder på en kasse foran en stenmur og holder en rosa Lumina-højtaler foran ansigtet" class="social-card-image">
+                <!-- Ikonerne er kun pynt og skjules for skærmlæsere -->
+                <div class="social-card-icons" aria-hidden="true">
+                    <div class="social-card-actions">
+                        <img src="images/hjerte.webp" alt="">
+                        <img src="images/chat.webp" alt="">
+                        <img src="images/send.webp" alt="">
+                    </div>
+                    <img src="images/gem.webp" alt="">
+                </div>
+            </li>
 
-        <!-- Top row -->
-        <img src="images/luminarose.png" class="gallery-image">
-        <img src="images/instabillede2.png" class="gallery-image">
+            <li class="social-card">
+                <div class="social-card-header">
+                    <img src="images/logo.webp" alt="" class="social-card-logo">
+                    <span class="social-card-name">Luminaaudio</span>
+                </div>
+                <img src="images/social2.webp" alt="Kvinde på yogamåtte i et lyst rum med en rosa Lumina-højtaler ved siden af" class="social-card-image">
+                <!-- Ikonerne er kun pynt og skjules for skærmlæsere -->
+                <div class="social-card-icons" aria-hidden="true">
+                    <div class="social-card-actions">
+                        <img src="images/hjerte.webp" alt="">
+                        <img src="images/chat.webp" alt="">
+                        <img src="images/send.webp" alt="">
+                    </div>
+                    <img src="images/gem.webp" alt="">
+                </div>
+            </li>
 
-        <div class="instagram-box">
-            <a href="https://www.instagram.com" target="_blank" class="insta-link" style="text-decoration: none;">FOLLOW US ON INSTAGRAM →</a>
-        </div>
-
-        <!-- Bottom row -->
-        <img src="images/picnicinsta.png" class="gallery-image">
-        <img src="images/luminagreen.png" class="gallery-image">
-        <img src="images/beigelum.png" class="gallery-image">
-
-    </div>
-
-    <section class="subscribe-section">
-        <h1>SUBSCRIBE</h1>
-        <p class="subtext">
-            Tilmeld dig vores nyhedsbrev og modtag<br>
-            en velkomstbonus og andre eksklusive rabatter.
-        </p>
-
-        <div class="input-wrapper">
-            <input type="email" placeholder="Dinmail@gmail.com">
-            <button>Tilmeld</button>
-        </div>
+            <li class="social-card">
+                <div class="social-card-header">
+                    <img src="images/logo.webp" alt="" class="social-card-logo">
+                    <span class="social-card-name">Luminaaudio</span>
+                </div>
+                <img src="images/social3.webp" alt="To Lumina-højtalere på en reol mellem bøger i varmt sollys" class="social-card-image">
+                <!-- Ikonerne er kun pynt og skjules for skærmlæsere -->
+                <div class="social-card-icons" aria-hidden="true">
+                    <div class="social-card-actions">
+                        <img src="images/hjerte.webp" alt="">
+                        <img src="images/chat.webp" alt="">
+                        <img src="images/send.webp" alt="">
+                    </div>
+                    <img src="images/gem.webp" alt="">
+                </div>
+            </li>
+        </ul>
     </section>
    
 
