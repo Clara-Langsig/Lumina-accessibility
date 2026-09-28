@@ -2,6 +2,7 @@
 // Toasten bliver liggende i DOM'en (tom), så skærmlæsere pålideligt læser den op,
 // når teksten skiftes. Et live-område der oprettes med teksten i, bliver ofte ikke læst op.
 let toastTimer;
+let toastShowTimer;
 
 // Laver et <span lang="en"> til engelske farvenavne, så skærmlæsere udtaler dem på engelsk
 function englishText(text) {
@@ -23,10 +24,14 @@ function showCartToast(parts) {
 
   // Tøm først, så samme besked læses op igen ved flere klik
   toast.textContent = '';
-  requestAnimationFrame(() => {
+  // Kort pause, så skærmlæseren opdager ændringen, og så fade-ind-animationen når at starte.
+  // En tidligere ventende besked annulleres, så teksten ikke står to gange ved hurtige klik
+  clearTimeout(toastShowTimer);
+  toastShowTimer = setTimeout(() => {
+    toast.textContent = '';
     toast.append(...parts);
     toast.classList.add('visible');
-  });
+  }, 50);
 
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
@@ -209,7 +214,12 @@ function initSearch() {
       return;
     }
 
-    const hit = sections.find(section => section.textContent.toLowerCase().includes(query));
+    // Søger både i teksten og i billedernes alt-tekster (fx "Spotify" står kun i et billede)
+    const searchableText = section => {
+      const alts = [...section.querySelectorAll('img[alt]')].map(img => img.alt).join(' ');
+      return `${section.textContent} ${alts}`.toLowerCase();
+    };
+    const hit = sections.find(section => searchableText(section).includes(query));
     if (!hit) {
       status.textContent = `Ingen resultater for "${input.value.trim()}".`;
       return;
@@ -240,10 +250,12 @@ function initBackToTop() {
   const hero = document.getElementById('top');
   if (!button || !hero) return;
 
-  const observer = new IntersectionObserver(([entry]) => {
-    button.classList.toggle('is-visible', !entry.isIntersecting);
-  });
-  observer.observe(hero);
+  // Knappen vises, når bunden af heroen er scrollet op over toppen af skærmen
+  const update = () => {
+    button.classList.toggle('is-visible', hero.getBoundingClientRect().bottom <= 0);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 }
 
 document.addEventListener('DOMContentLoaded', initBackToTop);
