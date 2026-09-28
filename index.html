@@ -18,11 +18,37 @@
             <a href="index.html" class="logo">LUMINA</a>
             <div class="nav-links nav-links-right">
                 <a href="#kontakt">Kontakt</a>
-                <button type="button">Søg</button>
-                <button type="button">Kurv</button>
+                <button type="button" class="search-toggle" aria-expanded="false" aria-controls="search-panel">Søg</button>
+                <button type="button" class="cart-toggle" aria-expanded="false" aria-controls="cart-panel">
+                    Kurv<span class="cart-count" id="cart-count"></span>
+                </button>
             </div>
         </nav>
     </header>
+
+    <!-- SØGNING: 40 % sort baggrund over siden med en aflang boks under logoet.
+         Lukkes ved klik udenfor boksen eller Escape -->
+    <div class="search-panel" id="search-panel" hidden>
+        <div class="search-box">
+            <form class="search-form" role="search">
+                <label for="search-input" class="visually-hidden">Søg på siden</label>
+                <input type="search" id="search-input" placeholder="Hvad leder du efter?" autocomplete="off">
+                <button type="submit" class="search-submit">Søg</button>
+            </form>
+            <p class="search-status" id="search-status" role="status"></p>
+        </div>
+    </div>
+
+    <!-- KURV: panel i højre side. Lukkes ved klik udenfor, luk-knappen eller Escape -->
+    <div class="cart-panel" id="cart-panel" role="dialog" aria-labelledby="cart-title" hidden>
+        <div class="cart-header">
+            <h2 class="cart-title" id="cart-title" tabindex="-1">Kurv</h2>
+            <button type="button" class="cart-close" aria-label="Luk kurven">×</button>
+        </div>
+        <p class="cart-empty">Din kurv er tom.</p>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p class="cart-total" id="cart-total" hidden></p>
+    </div>
 
     <main> 
         <h1 class="description">
@@ -58,9 +84,10 @@
             <p class="feature-text">
                 Kraftfuld lyd i et blødt og minimalistisk design. Op til 18 timers spilletid, justerbart LED-lys og Social Connect. Skabt til at dele musikken, hvor du er.
             </p>
-            <button type="button" class="feature-read-more">
+            <!-- Link (ikke knap), da den fører et andet sted hen på siden -->
+            <a href="#produktinfo" class="feature-read-more">
                 Læs mere<span class="visually-hidden"> om Lumina Bloom</span>
-            </button>
+            </a>
 
             <hr class="feature-line">
 
