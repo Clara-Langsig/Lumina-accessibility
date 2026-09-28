@@ -207,43 +207,94 @@
    
 
     <footer id="kontakt">
-        <div class="footer-content">
-            <div>
-                <h3>Kundeservice</h3>
+      <div class="footer-top">
+        <!-- NYHEDSBREV -->
+        <div class="footer-newsletter">
+            <p class="footer-logo">Lumina</p>
+
+            <form class="newsletter-form" aria-labelledby="newsletter-title">
+                <h2 class="newsletter-title" id="newsletter-title">Tilmeld dig nyhedsbrevet</h2>
+
+                <div class="newsletter-field">
+                    <img src="images/mail.webp" alt="" class="newsletter-icon">
+                    <!-- Label kun for skærmlæsere; placeholderen "E-mail" er den synlige tekst -->
+                    <label for="newsletter-email" class="visually-hidden">E-mail</label>
+                    <input type="email" id="newsletter-email" name="email"
+                           placeholder="E-mail" autocomplete="email" required
+                           aria-describedby="newsletter-hint">
+                    <span id="newsletter-hint" class="visually-hidden">Skriv din e-mailadresse for at tilmelde dig nyhedsbrevet</span>
+                    <button type="submit" class="newsletter-submit">
+                        <img src="images/sendknap.webp" alt="Tilmeld">
+                    </button>
+                </div>
+
+                <!-- Skærmlæsere får besked her, når e-mailen er sendt -->
+                <p class="visually-hidden" role="status" id="newsletter-status"></p>
+            </form>
+        </div>
+
+        <!-- De tre link-afsnit samlet i højre side -->
+        <div class="footer-nav-group">
+        <!-- KUNDESERVICE: links i en navigation, så skærmlæsere kan finde dem som landmark -->
+        <nav class="footer-links footer-links-service" aria-labelledby="footer-service-title">
+            <h2 class="footer-links-title" id="footer-service-title">Kundeservice</h2>
+            <ul>
+                <li><a href="#">Kontakt Os</a></li>
+                <li><a href="#">Levering &amp; Forsendelse</a></li>
+                <li><a href="#">Returneringer</a></li>
+                <li><a href="#" lang="en">Terms &amp; Condition</a></li>
+                <li><a href="#" lang="en">Privacy Policy</a></li>
+            </ul>
+        </nav>
+
+        <!-- VIRKSOMHEDEN -->
+        <nav class="footer-links footer-links-company" aria-labelledby="footer-company-title">
+            <h2 class="footer-links-title" id="footer-company-title">Virksomheden</h2>
+            <ul>
+                <li><a href="#">Om Lumina Group</a></li>
+                <li><a href="#">Presse</a></li>
+                <li><a href="#">Jobmuligheder</a></li>
+            </ul>
+        </nav>
+
+        <!-- SOCIAL: ikon + tekst er ét link pr. linje. Ikonerne har tom alt, da teksten er navnet -->
+        <nav class="footer-social" aria-labelledby="footer-social-title">
+            <h2 class="footer-links-title footer-social-title" id="footer-social-title">Social</h2>
+            <ul>
+                <li><a href="https://www.instagram.com" lang="en"><span class="footer-social-icon"><img src="images/instaicon.webp" alt=""></span>Instagram</a></li>
+                <li><a href="https://www.youtube.com" lang="en"><span class="footer-social-icon"><img src="images/yticon.webp" alt=""></span>Youtube</a></li>
+                <li><a href="https://www.tiktok.com" lang="en"><span class="footer-social-icon"><img src="images/tiktokicon.webp" alt=""></span>TikTok</a></li>
+                <li><a href="https://www.facebook.com" lang="en"><span class="footer-social-icon"><img src="images/fbicon.webp" alt=""></span>Facebook</a></li>
+            </ul>
+        </nav>
+        </div>
+      </div>
+
+        <!-- Skillelinje i footeren (kun pynt) -->
+        <hr class="footer-divider" aria-hidden="true">
+
+        <!-- Nederste række: betalingslogoer til venstre, copyright i midten -->
+        <div class="footer-bottom">
+            <!-- Betalingsmuligheder: logoerne fortæller hvordan man kan betale, derfor alt-tekst -->
+            <ul class="payment-icons" aria-label="Betalingsmuligheder">
+                <li><img src="images/mobilepay.webp" alt="MobilePay"></li>
+                <li><img src="images/dk.webp" alt="Dankort"></li>
+                <li><img src="images/visa.webp" alt="Visa"></li>
+                <li><img src="images/mastercard.webp" alt="Mastercard"></li>
+                <li><img src="images/applepay.webp" alt="Apple Pay" lang="en"></li>
+            </ul>
+
+            <p class="footer-copyright">2026 © LUMINA</p>
+
+            <nav class="footer-legal" aria-label="Hjælp og vilkår">
                 <ul>
-                    <li>Kontakt os</li>
-                    <li>Spørgsmål og svar</li>
-                    <li>Retur og reklamation</li>
-                    <li>Levering</li>
-                    <li>Handelsbetingelser</li>
+                    <li><a href="#" lang="en">FAQ</a></li>
+                    <li><a href="#" lang="en">Privacy</a></li>
+                    <li><a href="#" lang="en">Terms &amp; Condition</a></li>
                 </ul>
-            </div>
-
-            <div>
-                <h3>Om Lumina</h3>
-                <ul>
-                    <li>Om os</li>
-                    <li>Produktanmeldelser</li>
-                    <li>Cookies</li>
-                </ul>
-            </div>
+            </nav>
         </div>
 
-        <div class="payment-icons">
-            <img src="images/mp.png" alt="">
-            <img src="images/klarna.png" alt="">
-            <img src="images/visa.png" alt="">
-            <img src="images/mastercard.png" alt="">
-            <img src="images/applepay.png" alt="">
-        </div>
-
-        <p class="copyright">© 2025 Lumina Audio</p>
-
-        <div class="socials">
-            <img src="images/tiktok.svg" alt="">
-            <img src="images/fb.svg" alt="">
-            <img src="images/insta.svg" alt="">
-        </div>
     </footer>
   
     <script src="script.js"></script>

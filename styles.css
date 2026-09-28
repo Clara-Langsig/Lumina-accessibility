@@ -16,10 +16,6 @@
             box-sizing: border-box;
         }
 
-        html, body {
-  height: 100%;
-}
-
 /* Tekst kun for skærmlæsere: usynlig på skærmen, men bliver læst op */
 .visually-hidden {
   position: absolute;
@@ -41,15 +37,16 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
+/* Kun body har overflow-x, og ingen fast højde på html/body.
+   Ellers bliver body sin egen scroll-boks inde i siden, og siden kan scrolle videre efter footeren. */
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 20px 40px 0; 
-  overflow-x: hidden;
+  padding: 20px 40px 0;
+  overflow-x: hidden; /* Skjuler vandret scroll fra sektionerne i fuld bredde (100vw) */
 }
 
         /* --- Header / Navigation --- */
@@ -66,7 +63,7 @@ body {
             z-index: 10;
         }
 
-        nav {
+        header nav {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -415,7 +412,7 @@ body {
             .description { position: static; font-size: 20px; margin-bottom: 25px; }
             .cta-btn { position: static; width: auto; height: auto; padding: 14px 32px; font-size: 18px; }
             .hero-trustpilot { position: static; width: 180px; height: auto; margin-top: 30px; }
-            nav { flex-wrap: wrap; justify-content: center; }
+            header nav { flex-wrap: wrap; justify-content: center; }
             .nav-links { position: static; width: auto; height: auto; gap: 24px; }
             .nav-links a,
             .nav-links button { font-size: 18px; }
@@ -915,77 +912,357 @@ body {
 
 
 /* FOOTER STYLING */
+/* Fylder hele skærmbredden (X 0), 505 px høj.
+   Y 3805 = 94 px under "Følg os"-sektionen (Y 3131 + H 580 = 3711) */
 footer {
-  width: 100%;
   position: relative;
   box-sizing: border-box;
-  padding: 50px 120px 50px 70px;
-  background-color: #bfb2a0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: 94px;
+  min-height: 505px;
+  padding: 68px 0 0; /* Luften i siderne styres af .footer-top; bunden af logoerne rammer footerens 505 px */
+  background-color: #C0BEBB;
+  border-radius: 20px 20px 0 0; /* Kun de to øverste hjørner */
   color: #333333;
   overflow: hidden;
-  margin: 0 auto;
 }
 
-/* Footer content */
-.footer-content {
+/* --- Øverste række i footeren ---
+   Nyhedsbrevet for sig selv i venstre side, de tre link-afsnit samlet i højre side.
+   Samme luft (76 px) til venstre og højre kant. */
+.footer-top {
     display: flex;
-    gap: 120px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0 76px 0 130px; /* Nyhedsbrevet lidt længere inde fra venstre */
+    margin-bottom: 0;
 }
 
-.footer-content h3 {
-    font-size: 17px;
-    margin-bottom: 10px;
+/* Skillelinje: X 21 / Y 441.55, 1239 px lang (21 px fra begge kanter på 1280), 1 px #332E29.
+   Afsnittene over slutter ca. Y 373 (68 + 305), så 68 px luft giver Y ≈ 441 */
+.footer-divider {
+    margin: 68px 21px 0;
+    border: none;
+    border-top: 1px solid #332E29;
 }
 
-.footer-content ul {
+/* Kundeservice · Virksomheden · Social i tre lige brede kolonner,
+   så der er samme afstand fra overskrift til overskrift */
+.footer-nav-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+    column-gap: 90px;
+}
+
+/* Nyhedsbrev: 254 px bred */
+.footer-newsletter {
+    width: 254px;
+    color: #332E29;
+}
+
+/* --- Social --- */
+.footer-social {
+    color: #332E29;
+}
+
+/* "Social" flugter med ikonerne i venstre side */
+.footer-social-title {
+    color: #332E29;
+}
+
+/* Listen: Y 66 (36 px under overskriften på 30 px), 4 × 40 + 3 × 8 = 184 px høj */
+.footer-social ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 36px;
     list-style: none;
     padding: 0;
 }
 
-.footer-content li {
-    margin-bottom: 8px;
-    font-size: 14px;
+/* Ikon + tekst er ét link. Negativ margin + padding, så hover-boksen får luft
+   uden at ikon og tekst flytter sig */
+.footer-social a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 -8px;
+    padding: 0 8px;
+    border-radius: 8px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    letter-spacing: 0.15em; /* 15 % */
+    color: #332E29;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
 }
 
-/* Payment methods */
+/* Fast plads til ikonerne, så teksterne flugter selvom ikonerne har forskellig størrelse */
+.footer-social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+}
+
+.footer-social-icon img {
+    display: block;
+}
+
+/* Sart mørkegrå boks ved hover/fokus – teksten har stadig 6.2:1 i kontrast */
+.footer-social a:hover,
+.footer-social a:focus-visible {
+    background-color: #B3B0AD;
+}
+
+.footer-social a:focus-visible {
+    outline: 2px solid #332E29;
+    outline-offset: 2px;
+}
+
+.footer-links,
+.footer-links * {
+    color: #332E29;
+}
+
+/* Overskrift: Y 0 */
+.footer-links-title {
+    font-family: 'Antonio', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.04em; /* 4 % */
+}
+
+/* Links: X 2 / Y 65, linjehøjde 48 */
+.footer-links ul {
+    list-style: none;
+    margin-top: 35px;
+    padding: 0 0 0 2px;
+}
+
+.footer-links a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 48px;
+    letter-spacing: 0.04em; /* 4 % */
+    text-decoration: none;
+    white-space: nowrap; /* Hvert punkt på én linje */
+}
+
+/* Streg under teksten ved hover og tastaturfokus */
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid #332E29;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+    .footer-top {
+        gap: 40px;
+        padding: 0 20px;
+    }
+    .footer-nav-group {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
+}
+
+/* "LUMINA": Y 0 */
+.footer-logo {
+    font-family: 'Antonio', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #332E29;
+}
+
+.newsletter-form,
+.newsletter-form * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* "Tilmeld dig nyhedsbrevet": Y 129 (89 px under LUMINA) */
+.newsletter-title {
+    margin-top: 89px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #332E29;
+}
+
+/* Feltet: Y 175, 254 x 50, med 1 px streg i bunden */
+.newsletter-field {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 26px;
+    border-bottom: 1px solid #332E29;
+}
+
+/* mail.webp på X 0 (20 x 16), 29 px til teksten */
+.newsletter-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 16px;
+    margin-right: 29px;
+}
+
+/* "E-mail" på X 49 */
+.newsletter-field input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #332E29;
+}
+
+.newsletter-field input::placeholder {
+    color: #5A5A5A;
+    opacity: 1;
+}
+
+/* sendknap.webp helt til højre (X 226, 28 x 28) */
+.newsletter-submit {
+    flex-shrink: 0;
+    display: flex;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.newsletter-submit img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Tydelig fokus-ring med tastatur */
+.newsletter-field input:focus-visible,
+.newsletter-submit:focus-visible {
+    outline: 2px solid #332E29;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Knappen vokser lidt ved hover */
+@media (prefers-reduced-motion: no-preference) {
+    .newsletter-submit {
+        transition: transform 0.2s ease;
+    }
+
+    .newsletter-submit:hover {
+        transform: scale(1.15);
+    }
+}
+/* Betalingsmuligheder: X 29 (via .footer-bottom) / Y 441, lige under skillelinjen.
+   Logoerne i deres egen størrelse, 16 px mellemrum, centreret lodret */
 .payment-icons {
-  position: absolute;
-  left: 70px;            
-  bottom: 1px;          
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  z-index: 10;
-  align-items: center;
-  transform: none;       
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .payment-icons img {
-  height: 30px;
-}
-
-.payment-icons img[src*="mp.png"]  { height: 40px; }
-.payment-icons img[src*="applepay.png"] { height: 30px; }
-
-/* Mobile adjustment — move closer to the edge */
-@media (max-width: 480px) {
-  .payment-icons { left: 16px; bottom: 12px; gap: 10px; }
-  .payment-icons img { height: 26px; }
+    display: block;
 }
 
 
-/* Copyright */
-footer .copyright {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 10px;       
-  margin: 0;
-  font-size: 14px;
-  opacity: 0.7;
-  text-align: center;
-  z-index: 5;
+/* Nederste række: betalingslogoer til venstre, copyright i midten.
+   Tre kolonner (1fr auto 1fr), så teksten står præcis i midten af footeren
+   uanset hvor bredt logo-rækken er */
+.footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin: 0 29px;
+}
+
+/* "2026 © LUMINA" */
+.footer-copyright {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 41px;
+    letter-spacing: 0.15em; /* 15 % */
+    color: #332E29;
+    white-space: nowrap;
+}
+
+/* FAQ · Privacy · Terms & Condition: 296 x 41 i højre side af rækken */
+.footer-legal {
+    justify-self: end;
+}
+
+.footer-legal ul {
+    display: flex;
+    justify-content: space-between;
+    width: 296px;
+    height: 41px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-legal a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 41px;
+    letter-spacing: 0.15em; /* 15 % */
+    color: #332E29;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Lille streg under ved hover og tastaturfokus */
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-legal a:focus-visible {
+    outline: 2px solid #332E29;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .footer-legal {
+        justify-self: center;
+    }
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 8px;
+        padding-bottom: 16px;
+    }
 }
 
 /* Social icons */

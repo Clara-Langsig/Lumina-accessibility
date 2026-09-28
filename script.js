@@ -85,6 +85,29 @@ function initSpecsToggle() {
 
 document.addEventListener('DOMContentLoaded', initSpecsToggle);
 
+// NYHEDSBREV i footeren
+function initNewsletter() {
+  const form = document.querySelector('.newsletter-form');
+  const status = document.getElementById('newsletter-status');
+  if (!form || !status) return;
+
+  // "submit" fyrer kun, når browseren har godkendt e-mailen (required + type="email")
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const message = 'Tak! Din e-mail er sendt, og du er nu tilmeldt nyhedsbrevet.';
+
+    // Tøm først, så skærmlæseren læser beskeden op igen ved en ny tilmelding
+    status.textContent = '';
+    setTimeout(() => { status.textContent = message; }, 100);
+
+    alert(message);
+    form.reset();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initNewsletter);
+
 // Init ved load + re-init hvis DOM senere ændres
 document.addEventListener('DOMContentLoaded', initBuyButtons);
 // Hvis du dynamisk indsætter produkter kan du køre initBuyButtons() igen efter indsættelse
