@@ -113,8 +113,8 @@ body {
             border-radius: 2px;
         }
 
-        /* --- Main Content --- */
-        main {
+        /* --- Hero-sektionen --- */
+        .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -398,7 +398,7 @@ body {
         /* --- Responsivitet (Mobil) --- */
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 20px; }
-            main { padding-top: 220px; }
+            .hero { padding-top: 220px; }
             .description { position: static; font-size: 20px; margin-bottom: 25px; }
             .cta-btn { position: static; width: auto; height: auto; padding: 14px 32px; font-size: 18px; }
             .hero-trustpilot { position: static; width: 180px; height: auto; margin-top: 30px; }
@@ -584,7 +584,7 @@ body {
     font-size: 23px;
     line-height: 1.2;
     text-transform: uppercase;
-    color: #ED5DCD;
+    color: #B8149C; /* Mørkere pink (samme farvetone som #ED5DCD): 4.59:1 i kontrast */
 }
 
 /* "SOCIAL CONNECT": Y 44 */
@@ -1051,6 +1051,7 @@ footer {
     letter-spacing: 0.15em; /* 15 % */
     color: #332E29;
     white-space: nowrap;
+    text-transform: uppercase; /* "Lumina" i HTML, så skærmlæsere ikke staver det */
 }
 
 /* FAQ · Privacy · Terms & Condition: 296 x 41 i højre side af rækken */
@@ -1130,6 +1131,7 @@ body {
 .about-container {
     position: relative;
     display: flex;
+    flex-direction: row; /* Tekst til venstre, billede til højre (overskriver main-reglens kolonne) */
     justify-content: center;
     align-items: center;
     gap: 70px;
@@ -1141,6 +1143,8 @@ body {
 /* omos.webp: 670 x 487, 20 px runde hjørner, 3 px kant i #3D3529 */
 .about-image {
     display: block;
+    /* Op til 670 px bred, men skrumper hellere end at ryge ned under teksten */
+    flex: 0 1 670px;
     width: 670px;
     max-width: 100%;
     min-width: 0;
@@ -1152,8 +1156,11 @@ body {
 /* Tilbage-knappen ligger øverst i hjørnet, så den ikke skubber teksten ned */
 .back-btn {
     position: absolute;
-    top: 0;
-    left: 0;
+    z-index: 10; /* Ligger over <main>, så den kan klikkes */
+    top: 20px;  /* Samme sted som før: body har 20 px / 40 px padding */
+    left: 40px;
+    text-decoration: none; /* Er et link, ikke en knap */
+    line-height: 1.2;
     /* Mørk knap med hvid pil: 13.4:1 i kontrast */
     background-color: #332E29;
     color: #FFFFFF;
@@ -1180,6 +1187,7 @@ body {
 
 /* Tekst-sektion: 375 px bred */
 .about-text {
+    flex-shrink: 0; /* Teksten beholder sin bredde, det er billedet der skrumper */
     width: 375px;
     color: #332E29;
 }
@@ -1219,8 +1227,8 @@ body {
     font-weight: 700;
 }
 
-/* Når der ikke er plads til tekst og billede side om side, står billedet under teksten */
-@media (max-width: 1150px) {
+/* Kun på små skærme (tablet i højformat og mobil) står billedet under teksten */
+@media (max-width: 800px) {
     .about-container {
         flex-direction: column;
         gap: 40px;
@@ -1276,9 +1284,57 @@ body {
   .cart-toast { bottom: 18px; padding: 10px 14px; font-size: 14px; }
 }
 
-/* Ensure main content fills available height */
+/* <main> indeholder alt sidens hovedindhold (hero til "Følg os").
+   Flex-kolonne, så sektionernes marginer opfører sig som før */
 main {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 auto;
+}
+
+/* Når "Spring til indhold" flytter fokus til main, skal der ikke tegnes en ramme om hele siden */
+main:focus {
+  outline: none;
+}
+
+/* "Spring til indhold": skjult indtil man tabber til den med tastaturet */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: #332E29;
+  color: #FFFFFF;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Tydelig fokus-ring på knapper der ikke havde en */
+.cta-btn:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+.feature-buy:focus-visible,
+.feature-read-more:focus-visible {
+  outline: 2px solid #332E29;
+  outline-offset: 3px;
+}
+
+.logo:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 4px;
 }
 
 

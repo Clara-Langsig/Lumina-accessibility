@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Bloom</title>
+    <title>Lumina Bloom – bærbar Bluetooth-højtaler | Lumina</title>
     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Arimo:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Første element på siden: lader tastatur- og skærmlæserbrugere springe naven over -->
+    <a href="#main" class="skip-link">Spring til indhold</a>
+
     <header>
-        <nav>
+        <nav aria-label="Hovedmenu">
             <div class="nav-links">
                 <a href="#shop">Shop</a>
                 <a href="about.html">Om os</a>
                 <a href="#produktinfo">Produktinfo</a>
             </div>
-            <a href="index.html" class="logo">LUMINA</a>
+            <a href="index.html" class="logo" aria-label="Lumina, til forsiden">LUMINA</a>
             <div class="nav-links nav-links-right">
                 <a href="#kontakt">Kontakt</a>
                 <button type="button" class="search-toggle" aria-expanded="false" aria-controls="search-panel">Søg</button>
@@ -50,8 +53,11 @@
         <p class="cart-total" id="cart-total" hidden></p>
     </div>
 
-    <main id="top">
-        <h1 class="description">
+    <main id="main" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+        <h1 class="description" id="hero-title">
             Bærbar højtaler med 18<br>
             timers spilletid og kraftfuld<br>
             lyd. Designet til at følge din<br>
@@ -64,12 +70,12 @@
         </a>
 
         <img src="images/Trustpilot.webp" alt="Trustpilot" class="hero-trustpilot">
-    </main>
+    </section>
 
     <!-- PRODUKT-CARD -->
     <article class="feature-card" id="shop" aria-labelledby="feature-title">
         <div class="feature-image">
-            <img src="images/sagegreen.webp" alt="Lumina Bloom højtaler i Sage Green" id="feature-img">
+            <img src="images/sagegreen.webp" alt="Lumina Bloom højtaler i farven Sage Green" id="feature-img">
         </div>
 
         <div class="feature-content">
@@ -89,7 +95,7 @@
                 Læs mere<span class="visually-hidden"> om Lumina Bloom</span>
             </a>
 
-            <hr class="feature-line">
+            <hr class="feature-line" aria-hidden="true">
 
             <!-- Farvevælger: radioknapper, så skærmlæsere siger fx "Dusty Rose, valgt, 2 af 4" -->
             <fieldset class="color-picker">
@@ -101,19 +107,19 @@
                 <div class="color-swatches">
                     <label class="swatch swatch-green">
                         <input type="radio" name="farve" value="Sage Green" data-image="images/sagegreen.webp" checked>
-                        <span class="visually-hidden">Sage Green</span>
+                        <span class="visually-hidden" lang="en">Sage Green</span>
                     </label>
                     <label class="swatch swatch-rose">
                         <input type="radio" name="farve" value="Dusty Rose" data-image="images/dustyrose.webp">
-                        <span class="visually-hidden">Dusty Rose</span>
+                        <span class="visually-hidden" lang="en">Dusty Rose</span>
                     </label>
                     <label class="swatch swatch-white">
                         <input type="radio" name="farve" value="Moonlight White" data-image="images/moonlightwhite.webp">
-                        <span class="visually-hidden">Moonlight White</span>
+                        <span class="visually-hidden" lang="en">Moonlight White</span>
                     </label>
                     <label class="swatch swatch-lavender">
                         <input type="radio" name="farve" value="Lavender Mist" data-image="images/lavendermist.webp">
-                        <span class="visually-hidden">Lavender Mist</span>
+                        <span class="visually-hidden" lang="en">Lavender Mist</span>
                     </label>
                 </div>
             </fieldset>
@@ -134,7 +140,7 @@
                 <li><span class="spec-label">Vandafvisende:</span> IPX5</li>
                 <li><span class="spec-label">Batteritid:</span> 18 timers spilletid</li>
                 <li><span class="spec-label">Vægt:</span> 4,5 kg</li>
-                <li><span class="spec-label">Mål:</span> 32 × 15 × 16 cm (B × H × D)</li>
+                <li><span class="spec-label">Mål:</span> 32 × 15 × 16 cm <span aria-hidden="true">(B × H × D)</span><span class="visually-hidden">(bredde × højde × dybde)</span></li>
                 <li><span class="spec-label">Tilslutning:</span> Bluetooth 5.3 og AUX</li>
             </ul>
 
@@ -231,7 +237,8 @@
             </li>
         </ul>
     </section>
-   
+
+    </main>
 
     <footer id="kontakt">
       <div class="footer-top">
@@ -311,7 +318,7 @@
                 <li><img src="images/applepay.webp" alt="Apple Pay" lang="en" width="47" height="36"></li>
             </ul>
 
-            <p class="footer-copyright">2026 © LUMINA</p>
+            <p class="footer-copyright">2026 © Lumina</p>
 
             <nav class="footer-legal" aria-label="Hjælp og vilkår">
                 <ul>

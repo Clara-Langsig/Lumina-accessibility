@@ -6,11 +6,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-    <title>Om Os - Lumina</title>
+    <title>Om os – Lumina</title>
 </head>
 <body>
-    <section class="about-container">
-        <button class="back-btn" aria-label="Tilbage til forsiden">&#8592;</button>
+    <!-- Link (ikke knap), da den fører til en anden side -->
+    <a href="index.html" class="back-btn" aria-label="Tilbage til forsiden"><span aria-hidden="true">&#8592;</span></a>
+
+    <main class="about-container">
 
         <!-- TEKST: X 106 / Y 141, 375 px bred -->
         <div class="about-text">
@@ -42,6 +44,6 @@
         <!-- BILLEDE: 70 px fra teksten, begge centreret i højden -->
         <img src="images/omos.webp" class="about-image"
              alt="To smilende kvinder sidder på en lys sofa i et lyst rum med hvide gardiner">
-    </section>
+    </main>
 </body>
 </html>
