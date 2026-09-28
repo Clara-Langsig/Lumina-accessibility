@@ -20,6 +20,11 @@
   height: 100%;
 }
 
+/* Blød scroll til ankerlinks, men ikke for brugere der har slået animationer fra */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -108,6 +113,7 @@ body {
             margin-left: calc(-50vw + 50%);
             margin-right: calc(-50vw + 50%);
             margin-top: -20px; /* Ophæver body'ens top-padding, så billedet starter helt oppe */
+            position: relative; /* Så .description kan placeres ud fra heroens øverste venstre hjørne */
             /* Billedets højde (832/1280 af bredden) minus 3 cm, som skæres af i toppen */
             min-height: calc(100vw * 832 / 1280 - 3cm);
             padding: 140px 20px 60px; /* Plads til naven øverst */
@@ -127,27 +133,62 @@ body {
         }
 
 /* --- Text and CTA --- */
+        /* Hero-tekst i venstre side: X 156, Y 438 */
         .description {
-            font-size: 2rem;
-            font-weight: 600;
-            text-align: center;
-            max-width: 700px;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            color: #fff;
+            position: absolute;
+            left: 156px;
+            top: 438px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 1.2;
+            text-align: left;
+            color: #FFFFFF;
+            /* Nulstiller den generelle h1-styling */
+            text-transform: none;
+            letter-spacing: normal;
+            opacity: 1;
+            margin: 0;
         }
 
+        /* CTA under hero-teksten: X 156, Y 630, 357 x 61 px */
         .cta-btn {
-            background-color: #3D3529;
-            color: #ffffff;
-            padding: 14px 40px;
+            position: absolute;
+            left: 156px;
+            top: 630px;
+            width: 357px;
+            height: 61px;
+            padding: 16px 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            white-space: nowrap;
+            background-color: #332E29;
+            color: #FFFFFF;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
             border: none;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s;
+        }
+
+        .cta-btn img {
+            width: 19px;
+            height: 15px;
+        }
+
+        /* Trustpilot nederst i højre hjørne af heroen.
+           Designets X 1135 / Y 748 på en 1440 px bred side = 66 px fra højre kant og 2 px fra bunden */
+        .hero-trustpilot {
+            position: absolute;
+            right: 66px;
+            bottom: 2px;
+            width: 239px;
+            height: 73px;
         }
 
         .cta-btn:hover {
@@ -159,6 +200,9 @@ body {
             h1 { font-size: 3.5rem; }
             header { flex-direction: column; gap: 20px; }
             main { padding-top: 220px; }
+            .description { position: static; font-size: 20px; margin-bottom: 25px; }
+            .cta-btn { position: static; width: auto; height: auto; padding: 14px 32px; font-size: 18px; }
+            .hero-trustpilot { position: static; width: 180px; height: auto; margin-top: 30px; }
             nav { flex-wrap: wrap; justify-content: center; }
             .nav-links { position: static; width: auto; height: auto; gap: 24px; }
             .nav-links a,
@@ -207,13 +251,6 @@ body {
     letter-spacing: 2px;
     margin-bottom: 30px;
     color: #fdfcf5;
-}
-
-.description {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 25px;
-    opacity: 0.95;
 }
 
 .cta-button {
