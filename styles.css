@@ -519,57 +519,6 @@ body {
     margin: 0 10px;
 }
 
-.reviews {
-    display: flex;
-    gap: 20px;
-    padding: 40px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px 25px;
-    width: 300px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.stars {
-    color: #00b67a;
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    margin: 0 0 10px;
-    font-size: 14px;
-    color: black;
-}
-
-.card p {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #333;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    font-size: 12px;
-    color: #666;
-}
-
-.review-text {
-    color: #6d6159;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    padding: 0 15px;
-    white-space: normal;
-    text-align: center;
-}
-
 .large-image-section {
     width: 100%;
     margin-top: 60px;
@@ -604,183 +553,148 @@ body {
     margin: 0 auto; 
 }
 
-/* --- Product Cards Section --- */
-.products-section {
-    padding: 80px 20px;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.product-card {
-    background-color: white;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: left;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
-.product-image-wrapper {
-    background-color: #e8e9ec;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.product-image-wrapper img {
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-}
-
-.product-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.product-subtitle {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.product-price {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.buy-button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    background-color: #E8DDD0;
-    color: #333;
-}
-
-.buy-button:hover {
-    opacity: 0.8;
-}
-
-.buy-button.lavender {
-    background-color: #C3DDE8;
-}
-
-.buy-button.green {
-    background-color: #A9C5A0;
-}
-
-.buy-button.rose {
-    background-color: #F4C2C2;
-}
-
-
-@media (max-width: 900px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .large-card {
-        grid-column: span 1;
-    }
-}
-
-/* --- Productinformation Section --- */
-.product-info-section {
-    padding: 80px 20px;
-}
-
-.product-info-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: center;
-}
-
-.info-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 60px; 
-}
-
-.info-image img {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 30px;
-    height: auto;
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
-}
-
-.info-content {
-    color: #ffffff;
-}
-
-.info-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.5rem;
-    color: #3D3529;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-    line-height: 1;
-}
-
-.info-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.info-list li {
-    
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    padding-left: 25px;
+/* --- Produktspecifikationer --- */
+/* Fuld bredde med produktinfo.webp som baggrund; højden følger billedets proportioner (1280 x 742) */
+.specs-section {
     position: relative;
-    color: #3D3529;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    aspect-ratio: 1280 / 742;
+    background: url('images/produktinfo.webp') center / cover no-repeat;
+    color: #332E29; /* Al tekst i sektionen */
 }
 
-.info-list li::before {
-    content: "•";
+/* Overskrift: X 89, Y 35 i sektionen */
+.specs-title {
     position: absolute;
-    left: 0;
-    color: #3D3529;
-    font-size: 1.5rem;
+    left: 89px;
+    top: 35px;
+    margin: 0;
+    font-family: 'Antonio', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: 0.01em; /* 1 % */
+    line-height: 1.2;
+    text-transform: uppercase; /* Skrevet med små bogstaver i HTML, så skærmlæsere ikke staver det */
+    color: #332E29;
+}
+
+/* Boks: 517 x 376, #DCDBD9, 20 px runde hjørner.
+   36 px padding giver listen (297 x 242) øverst og knappen på X 36 / Y 299.
+   Højden er "mindst 376", så boksen vokser nedad når de ekstra punkter vises. */
+.specs-box {
+    position: absolute;
+    left: 89px;
+    top: 150px;
+    width: 517px;
+    min-height: 376px;
+    padding: 36px;
+    background-color: #DCDBD9;
+    border-radius: 20px;
+    color: #332E29;
+}
+
+.specs-box,
+.specs-box * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Runde punkter foran hvert tekststykke */
+.specs-list {
+    list-style: disc;
+    padding-left: 22px;
+    font-size: 18px;
+    font-weight: 400;
     line-height: 1.2;
 }
 
-@media (max-width: 900px) {
-    .product-info-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+.specs-list li + li {
+    margin-top: 18px;
+}
+
+.spec-label {
+    font-weight: 500;
+}
+
+/* Knap: 399 x 41 med 10 px padding, 21 px under listen */
+.specs-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 399px;
+    height: 41px;
+    margin-top: 21px;
+    padding: 10px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #332E29;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    text-align: left;
+}
+
+.specs-toggle-icon {
+    display: inline-block;
+    width: 12px;
+    font-style: normal;
+}
+
+.specs-toggle:focus-visible {
+    outline: 2px solid #332E29;
+    outline-offset: 2px;
+}
+
+/* Vokser en smule ved hover, så man kan se det er en knap.
+   Vokser ud fra venstre kant, så teksten ikke flytter sig væk fra punkterne */
+@media (prefers-reduced-motion: no-preference) {
+    .specs-toggle {
+        transform-origin: left center;
+        transition: transform 0.2s ease;
     }
-    
-    .info-title {
-        font-size: 2.5rem;
+
+    .specs-toggle:hover {
+        transform: scale(1.05);
+    }
+}
+
+.specs-more {
+    margin-top: 21px;
+}
+
+/* Mindre skærme: boks og overskrift i almindelig rækkefølge, så intet ryger uden for sektionen */
+@media (max-width: 900px) {
+    .specs-section {
+        aspect-ratio: auto;
+        padding: 30px 20px 40px;
+    }
+    .specs-title {
+        position: static;
+        margin-bottom: 24px;
+    }
+    .specs-box {
+        position: static;
+        width: 100%;
+        max-width: 517px;
+        min-height: 0;
+    }
+    .specs-toggle {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .specs-title {
+        left: 20px;
+        top: 20px;
+        font-size: 36px;
+    }
+    .specs-box {
+        padding: 24px;
     }
 }
 

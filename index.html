@@ -41,7 +41,7 @@
     </main>
 
     <!-- PRODUKT-CARD -->
-    <article class="feature-card" aria-labelledby="feature-title">
+    <article class="feature-card" id="shop" aria-labelledby="feature-title">
         <div class="feature-image">
             <img src="images/sagegreen.webp" alt="Lumina Bloom højtaler i Sage Green" id="feature-img">
         </div>
@@ -97,82 +97,34 @@
         </div>
     </article>
 
-    <!-- Trustpilot reviews-->
-    <div class="reviews" id="reviews-container"></div>
+    <!-- PRODUKTSPECIFIKATIONER -->
+    <section class="specs-section" id="produktinfo" aria-labelledby="specs-title">
+        <h2 class="specs-title" id="specs-title">Produktspecifikationer</h2>
 
-<script src="script.js"></script>
+        <div class="specs-box">
+            <ul class="specs-list">
+                <li><span class="spec-label">Lydstyrke:</span> Op til 100 dB</li>
+                <li><span class="spec-label">Vandafvisende:</span> IPX5</li>
+                <li><span class="spec-label">Batteritid:</span> 18 timers spilletid</li>
+                <li><span class="spec-label">Vægt:</span> 4,5 kg</li>
+                <li><span class="spec-label">Mål:</span> 32 × 15 × 16 cm (B × H × D)</li>
+                <li><span class="spec-label">Tilslutning:</span> Bluetooth 5.3 og AUX</li>
+            </ul>
 
-        <p class="review-text">Bedømt til 4.5 / 5 baseret på 470 anmeldelser. Viser vores 5 stjernede Trustpilot anmeldelser.</p>
-    
+            <!-- aria-expanded fortæller skærmlæsere om listen er åben eller lukket -->
+            <button type="button" class="specs-toggle" aria-expanded="false" aria-controls="specs-more">
+                <span class="specs-toggle-icon" aria-hidden="true">+</span>
+                Flere specifikationer og information
+            </button>
 
-
-    <!-- PRODUCT CARDS SECTION -->
-    <section class="products-section" id="shop">
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/beigelumina.png" alt="Moonlight White">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Moonlight White</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/blaacard.png" alt="Lavender Mist">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Lavender Mist</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button lavender">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/greenlumina.png" alt="Sage Green">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Sage Green</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button green">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/dustyrose.png" alt="Dusty Rose">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Dusty Rose</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button rose">Køb nu</button>
-            </div>
+            <ul class="specs-list specs-more" id="specs-more" hidden>
+                <li>Højtaleren er med bløde former og stofbeklædt front</li>
+                <li>Subtile LED-lys der følger musikken.</li>
+                <li>LED-lystemaet kan ændres i appen</li>
+                <li>Kan parre op til 3 andre LUMINA One enheder.</li>
+                <li>USB-C oplader medfølger.</li>
+            </ul>
         </div>
-
-          <!-- PRODUKTINFORMATION SEKTION -->
-    <section class="product-info-section" id="produktinfo">
-        <div class="product-info-container">
-            <div class="info-image">
-                <img src="images/produktinfo.png" alt="Lumina Bloom med features">
-            </div>
-            <div class="info-content">
-                <h2 class="info-title">PRODUKTINFORMATION</h2>
-                <ul class="info-list">
-                    <li>Lydstyrke: Op til 100 dB</li>
-                    <li>Højtaleren er med bløde former, stofbeklædt front og subtile LED-lys der følger musikken.</li>
-                    <li>LED-lystemaet kan ændres i appen</li>
-                    <li>Vægt: Kun 4,5 kg</li>
-                    <li>Medfølger en stof tote-bag i 100% genanvendt bomuld</li>
-                    <li>Batteritid: Op til 18 timers spilletid og med genopladeligt batteri via USB-C. Oplader medfølger.</li>
-                    <li>Tilslutning: Bluetooth 5.3, AUX-indgang og mulighed for at parre op til 3 andre LUMINA One enheder.</li>
-                    <li>Social Connect: Funktion der gør det nemt at "blende" din playliste med andres via app'en.</li>
-                    <li>IPX5 vandafvisende.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     </section>
 
     <section class="split-section">

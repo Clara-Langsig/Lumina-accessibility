@@ -7,67 +7,6 @@ if (backBtn) {
   });
 }
 
-// REVIEWS
-
-// JSON data
-const reviews = [
-    {
-        stars: 5,
-        title: "Perfekt højtaler og hurtig levering!",
-        text: "Jeg er meget glad og tilfreds med min nye højtaler – Lyden er bare super!",
-        name: "Ida Hansen",
-        date: "04/25"
-    },
-    
-    {
-        stars: 5,
-        title: "Super oplevelse!",
-        text: "Højtaleren har en perfekt størrelse. Jeg har den med mig overalt. Jeg er positivt overrasket!",
-        name: "Marie Larsen",
-        date: "11/25"
-    },
-    {
-        stars: 5,
-        title: "Så stilren og fantastisk lyd",
-        text: "Jeg elsker det stilrene smukke design på højtaleren. Jeg er positivt overrasket!",
-        name: "Ida Christensen",
-        date: "11/25"
-    },
-    {
-        stars: 5,
-        title: "Super oplevelse!",
-        text: "Højtaleren har en perfekt størrelse. Jeg har den med mig overalt. Jeg er positivt overrasket!",
-        name: "Marie Larsen",
-        date: "11/25"
-    }
-];
-
-// DOM target
-const container = document.getElementById("reviews-container");
-
-// Generator funktion
-function generateReviewCards() {
-    reviews.forEach(review => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-            <div class="stars">${"★".repeat(review.stars)}</div>
-            <h3>${review.title}</h3>
-            <p>${review.text}</p>
-            <div class="footer">
-                <span class="name">${review.name}</span>
-                <span class="date">${review.date}</span>
-            </div>
-        `;
-
-        container.appendChild(card);
-    });
-}
-
-// Generer cards
-generateReviewCards();
-
 // Vis toast når et "Køb nu" trykkes
 function showCartToast(message = 'Produktet er tilføjet til indkøbskurven') {
   // Hvis allerede en toast, fjern den først (så vi kan re-animate)
@@ -95,7 +34,7 @@ function showCartToast(message = 'Produktet er tilføjet til indkøbskurven') {
 
 // Bind handler til alle buy-knapper (incl. dem med varianter)
 function initBuyButtons() {
-  const buyButtons = document.querySelectorAll('.buy-button, .feature-buy');
+  const buyButtons = document.querySelectorAll('.feature-buy');
   buyButtons.forEach(btn => {
     // Ignorer hvis allerede bundet
     if (btn.dataset.buyHandlerBound) return;
@@ -127,6 +66,24 @@ function initColorSwatches() {
 }
 
 document.addEventListener('DOMContentLoaded', initColorSwatches);
+
+// FLERE SPECIFIKATIONER: fold ekstra punkter ud/ind
+function initSpecsToggle() {
+  const toggle = document.querySelector('.specs-toggle');
+  if (!toggle) return;
+  const more = document.getElementById(toggle.getAttribute('aria-controls'));
+  const icon = toggle.querySelector('.specs-toggle-icon');
+  if (!more || !icon) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    more.hidden = isOpen;
+    icon.textContent = isOpen ? '+' : '−';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initSpecsToggle);
 
 // Init ved load + re-init hvis DOM senere ændres
 document.addEventListener('DOMContentLoaded', initBuyButtons);
